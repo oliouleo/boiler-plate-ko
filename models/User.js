@@ -7,8 +7,8 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        trim: true,
-        unique: 1
+        trim: true, // 띄워쓰기 제거
+        unique: 1 // 중복 방지
     },
     password: {
         type: String,
