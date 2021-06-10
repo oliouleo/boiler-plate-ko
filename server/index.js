@@ -1,6 +1,5 @@
 const express = require('express') // express 모듈을 가져옴.
 const app = express() // 새로운 express 앱을 만듦.
-const port = 5500 // 포트 번호.
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
@@ -30,7 +29,7 @@ app.post('/api/users/register', (req, res) => {
     // 회원가입 할 때 필요한 정보들을 client에서 가져오면 그것들을 DB에 넣어준다.
     const user = new User(req.body)
   
-    user.save((err,userInfo) => {
+    user.save((err, userInfo) => {
       if(err) return res.json({ success: false, err})
       return res.status(200).json({
         success: true
@@ -52,7 +51,7 @@ app.post('/api/users/register', (req, res) => {
         
     //요청한 이메일이 데이터베이스에 있다면 비밀번호가 맞는 비밀번호인지 확인.
     
-        user.comparePassword(req.body.password , (err, isMatch ) => {
+        user.comparePassword(req.body.password , (err, isMatch) => {
             if(!isMatch)
             return res.json({ loginSuccess: false, message: "비밀번호가 틀렸습니다."})
 
@@ -99,7 +98,7 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
   })
 
-
+const port = 6000 // 포트 번호.
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}!`)
 })
